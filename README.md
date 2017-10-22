@@ -17,10 +17,10 @@ To use the price scraper, there are a couple of set up items you need to address
 
 1. Clone/fork the repository and install it on your local machine.
 2. Open the api_config.py and input the following configuration items:
-a) Stubhub username
-b) Stubhub password
-c) API Key
-d) Ids for events you'd like to scrape ( Can be found in their respective stubhub urls )
+⋅⋅* Stubhub username
+⋅⋅* Stubhub password
+⋅⋅* API Key
+⋅⋅* Ids for events you'd like to scrape ( Can be found in their respective stubhub urls )
 3. Run the script by executing 'python index.py'
 
 ## Notes
