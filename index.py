@@ -46,18 +46,21 @@ for event_id in event_ids:
 
     while is_scraping_incomplete:
 
-        inventory = requests.get(inventory_url, headers=headers, params=data)
-        inv = inventory.json()
-        listings = inv['listing']
+        try:
+            inventory = requests.get(inventory_url, headers=headers, params=data)
+            inv = inventory.json()
+            listings = inv['listing']
 
-        cur_prices = [listing['currentPrice']['amount'] for listing in listings]
-        prices = prices + cur_prices
+            cur_prices = [listing['currentPrice']['amount'] for listing in listings]
+            prices = prices + cur_prices
 
-        # Scraping incomplete when results returned are less than the max returned
-        is_scraping_incomplete = len(cur_prices) == 250
+            # Scraping incomplete when results returned are less than the max returned
+            is_scraping_incomplete = len(cur_prices) == 250
 
-        # advance the starting position for the results
-        data['start'] = data['start'] + 250
+            # advance the starting position for the results
+            data['start'] = data['start'] + 250
+        except:
+            pass
 
     csv_rows.append([cur_time, min(prices), max(prices),
         sum(prices)/len(prices), statistics.median(prices), event_id])
